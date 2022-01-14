@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page d'accueil</title>
-</head>
-<body>
-        <h1>Bonjour à tous</h1>
-</body>
-</html>
+<?php
+$title='Vue accueil';
+
+ob_start();  //On place en mémoire tampon tout ce qui suit
+?>
+
+<h2>Notre site MVC pour CEREMA</h2>
+<p>Bienvenue à tous sur notre premier site MVC</p>
+
+<?php
+$content = ob_get_clean();
+require('template.php');
+?>
