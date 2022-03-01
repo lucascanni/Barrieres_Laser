@@ -1,0 +1,15 @@
+#!/bin/bash
+
+while true
+do
+	DIR=$(ls -a /home/pi/Photos)
+	if [ -n "$DIR" ]; then
+		sshpass -p "raspberry" scp -r /home/pi/Photos pi@192.168.1.20:/home/pi/
+		cd /home/pi/Photos/
+		rm -f *
+	fi
+done
+
+
+
+
