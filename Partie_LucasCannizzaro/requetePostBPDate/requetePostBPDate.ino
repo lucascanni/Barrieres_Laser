@@ -1,13 +1,25 @@
 #include <ArduinoJson.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <Wire.h>
+#include <DS3231.h>
 
-#define _pinBP1 22
+#define _pinBP1 23
 #define _pinBP2 19
 unsigned long timer = 0;
 volatile boolean flag = false;
 volatile int tBp1 = 0, tBp2 = 0;
 String output = "";
+byte Year ;
+byte Month ;
+byte Date ;
+byte DoW ;
+byte Hour ;
+byte Minute ;
+byte Second ;
+bool Century  = false;
+bool h12 ;
+bool PM ;
 
 const char* ssid = "wireless_cdf";
 const char* password =  "1A2B3C4D5E";
@@ -15,6 +27,9 @@ const char* password =  "1A2B3C4D5E";
 IPAddress ip(192, 168, 1, 30);
 IPAddress gateway(192, 168, 1, 254);
 IPAddress subnet(255, 255, 255, 0);
+
+HTTPClient http;
+DS3231 Clock;
 
 void setup() {
   pinMode(_pinBP1, INPUT);
@@ -39,6 +54,13 @@ void setup() {
   Serial.println("\nConnected to the WiFi network");
   Serial.print("[+] ESP32 IP : ");
   Serial.println(WiFi.localIP());
+     
+    
+  http.begin("http://192.168.1.20/Laser/new");  //Specify destination for HTTP request
+  http.addHeader("Content-Type", "application/json"); //Specify content-type header
+  
+  Wire.begin();
+  
   attachInterrupt(_pinBP1, appui1, RISING);
   attachInterrupt(_pinBP2, appui2, RISING);
 }
@@ -52,26 +74,45 @@ void appui2() {
   flag = true;
 }
 
+void readRTC( ) { /* function readRTC */
+ ////Read Real Time Clock
+ Year = Clock.getYear();
+ Serial.print(Year, DEC);
+ Serial.print("-");
+ Month = Clock.getMonth(Century);
+ Serial.print(Month, DEC);
+ Serial.print("-");
+ Date = Clock.getDate();
+ Serial.print(Date, DEC);
+ Serial.print(" ");
+ Hour = Clock.getHour(h12, PM);
+ Serial.print(Hour, DEC); //24-hr
+ Serial.print(":");
+ Minute = Clock.getMinute();
+ Serial.print(Minute, DEC);
+ Serial.print(":");
+ Second = Clock.getSecond();
+ Serial.println(Second, DEC);
+ delay(1000);
+}
+
 void loop() {
   
   if(flag == true){
    if(WiFi.status()== WL_CONNECTED&&(((tBp1 != 0)&&(tBp2 != 0))&&(tBp1 < tBp2))){   //Check WiFi connection status
     
-     HTTPClient http;   
-    
-     http.begin("http://192.168.1.20/version2/index.php?url=Laser/new");  //Specify destination for HTTP request
-     http.addHeader("Content-Type", "application/json");             //Specify content-type header
+     
      timer = tBp2-tBp1;
      Serial.print("Intervalle de temps : ");
      Serial.print(timer);
      Serial.println(" ms");
      tBp1 = 0;
      tBp2 = 0;
-      
+     readRTC(); 
      StaticJsonDocument<32> doc;
 
      doc["value1"] = timer;
-     doc["value2"] = 0;
+     doc["time"] = Year,"-",Month,"-",Date," ",Hour,":",Minute,":",Second;
 
      serializeJson(doc, output);
      
