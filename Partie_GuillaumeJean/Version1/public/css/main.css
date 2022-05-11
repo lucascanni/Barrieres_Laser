@@ -1,0 +1,260 @@
+/* Topbar */
+.topbar {
+  z-index: 10;
+  width: 100%;
+  height: 2%;
+  background-color: #ff9900;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.topbar_item {
+  margin: 0.3% 1% 0.3% 1%;
+  color: white;
+  text-decoration: none;
+  font-size: 120%;
+}
+
+#log {
+  margin: 0%;
+  padding: 0.1% 0.5% 0.5% 0.5%;
+}
+
+#log:hover {
+  color: #ff9900;
+  background-color: white;
+}
+
+a.topbar_item:hover {
+  color: black;
+}
+
+/* Sidenav menu */
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: -250px;
+  background-color: #ff9900;
+  padding-top: 60px;
+  transition: left 0.5s ease;
+}
+
+.sidenav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Sidenav menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #111;
+}
+
+/* Active class */
+.sidenav.active {
+  left: 0;
+}
+
+/* Close btn */
+.sidenav .close {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.burger-icon span {
+  display: block;
+  width: 28px;
+  height: 4px;
+  background-color: white;
+  margin: 4px 0;
+}
+
+/* Fin Side bar */
+
+main {
+  width: 100%;
+}
+
+.banniere {
+  text-align: center;
+  background-color: #f3f0f0;
+  padding-top: 0.1%;
+  width: 100%;
+  border-bottom: solid 5px #ff990094;
+}
+
+.ban-content {
+  width: 20%;
+
+}
+
+body {
+  z-index: 10;
+  background-color: #f7f5f5;
+}
+
+
+/* Accueil */
+
+h1 {
+  margin: auto;
+  background-color: #f3f0f0;
+  margin-top: 2%;
+  text-align: center;
+  justify-content: center;
+  width: 35%;
+  border: solid 3px #ff9900;
+  border-radius: 20px;
+  color: #88441c;
+  font-size: 200%;
+  padding: 0.5% 0.5% 0.5% 0.5%;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.img_accueil {
+  margin-top: 2%;
+  width: 45%;
+}
+
+.div_img_accueil {
+  display: flex;
+  justify-content: center;
+}
+
+img#background_default {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  width: 65%;
+  opacity: 0.70;
+  border-right: solid 6px #ff9900;
+  border-left: solid 6px #ff9900;
+}
+
+img#background_default_bis {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  width: 65%;
+  opacity: 0.70;
+  border-right: solid 6px #ff9900;
+  border-left: solid 6px #ff9900;
+}
+
+img#background_responsive {
+  display: none;
+}
+
+
+.images {
+  margin-top: 5%;
+  width: 50%;
+  margin-left: 25%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+a.lien_voiture {
+  width: 40%;
+  border: solid rgba(0, 0, 0, 0.205) 4px;
+}
+
+img.img_voiture {
+  width: 100%;
+}
+
+.data {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.datas {
+  border-bottom: solid 3px #ff99008a;
+  width: 100%;
+  padding-top: 1.5%;
+  display: flex;
+  justify-content: center;
+}
+
+.datas button
+{
+  background: none;
+  border: none;
+}
+
+.contenu
+{
+  text-align: center;
+  display: table-column;
+  width: 40%;
+}
+
+h4.donnee
+{
+  padding-right: 0.5%;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1337px) {
+  h1.accueil {
+    width: 50%;
+    font-size: 150%;
+  }
+}
+
+
+@media screen and (max-width: 900px) {
+
+  img#background_default {
+    display: none;
+  }
+
+  img#background_responsive {
+    display: flex;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: 0.70;
+    overflow: auto;
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+  h1.accueil {
+    width: 75%;
+    font-size: 110%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  h1.accueil {
+    width: 85%;
+    font-size: 90%;
+  }
+
+}

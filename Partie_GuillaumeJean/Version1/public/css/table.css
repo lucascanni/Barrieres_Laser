@@ -1,0 +1,75 @@
+table {
+    margin-top: 2%;
+    width: 63%;
+}
+
+th {
+    text-align: center;
+    font-style: italic;
+    border: solid 3px black;
+    color: black;
+    background: #ff9900;
+}
+
+td {
+    border: solid 3px black;
+}
+
+tr:nth-child(even) {
+    /* Cible en Css les cellules de tableau des lignes de position paire  */
+    /* Listes de propriétés Css */
+    background-color: #ff99007a;
+    text-align: center;
+}
+
+tr:nth-child(odd) {
+    /* Cible en Css les cellules de tableau des lignes de position paire  */
+    /* Listes de propriétés Css */
+    background-color: #ff73007a;
+    text-align: center;
+}
+
+.donnees
+{
+    color: black;
+    text-decoration: none;
+}
+
+.donnees:hover
+{
+    color: #5a5a5a;
+    text-decoration: none;
+}
+
+
+/* Responsive */
+
+@media screen and (max-width: 375px) {
+    table {
+        margin-top: 2%;
+        width: 70%;
+    }
+
+    th {
+        font-size: 110%;
+    }
+
+    td {
+        font-size: 90%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    table {
+        margin-top: 2%;
+        width: 80%;
+    }
+
+    th {
+        font-size: 90%;
+    }
+
+    td {
+        font-size: 70%;
+    }
+}

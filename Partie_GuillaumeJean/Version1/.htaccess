@@ -1,0 +1,20 @@
+RewriteEngine On
+
+#------------------------------------------
+# On évite d'aller sur fichier ou repertoire
+#------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+#------------------------------------------
+# On redirige l'URL
+# Tout ce qu'on tape dans l'url va être remplacé par :
+# index.php?url=$1
+#
+# Par exemple, si on tape
+# http://NotreSite/toto         , on sera redirigé vers :
+# http://NotreSite/index.php?url=toto
+#------------------------------------------
+
+RewriteRule ^(.*)$ index.php?url=$1
